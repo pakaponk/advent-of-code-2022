@@ -5,28 +5,25 @@ function readFile() {
   return fs.readFileSync(path.resolve(__dirname, './input.txt')).toString();
 }
 
-function solvePart1(text: string) {
+function getWeights(text: string) {
   const elves = text.split('\n\n');
 
-  const weights = elves.map((str) =>
+  return elves.map((str) =>
     str
       .split('\n')
       .map((str) => parseInt(str))
       .reduce((sum, curr) => sum + curr)
   );
+}
+
+function solvePart1(text: string) {
+  const weights = getWeights(text);
 
   return Math.max(...weights);
 }
 
 function solvePart2(text: string) {
-  const elves = text.split('\n\n');
-
-  const weights = elves.map((str) =>
-    str
-      .split('\n')
-      .map((str) => parseInt(str))
-      .reduce((sum, curr) => sum + curr)
-  );
+  const weights = getWeights(text);
 
   const [one, two, three] = weights.sort((a, z) => z - a);
 
