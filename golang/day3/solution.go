@@ -21,6 +21,14 @@ func getMap(str string) map[rune]bool {
 	return m
 }
 
+func getSum(nums []int) int {
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
+	return sum
+}
+
 func getPriority(c rune) int {
 	if c >= 97 {
 		// a - z
@@ -54,12 +62,7 @@ func solvePart1(bags []string) int {
 		priorities[i] = getPriority(same)
 	}
 
-	sum := 0
-	for _, num := range priorities {
-		sum += num
-	}
-
-	return sum
+	return getSum(priorities)
 }
 
 const TotalElvesInGroup = 3
@@ -93,12 +96,7 @@ func solvePart2(bags []string) int {
 
 	}
 
-	sum := 0
-	for _, num := range priorities {
-		sum += num
-	}
-
-	return sum
+	return getSum(priorities)
 }
 
 func main() {
