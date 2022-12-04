@@ -48,10 +48,17 @@ func isFullyContained(itvA, itvB Interval) bool {
 }
 
 func isIntersected(itvA, itvB Interval) bool {
-	if itvA.start <= itvB.start {
+	if itvA.start < itvB.start {
+		// |----|   A
+		//   |----| B
 		return itvA.end >= itvB.start
-	} else {
+	} else if itvA.start > itvB.start {
+		//   |----| A
+		// |----|   B
 		return itvB.end >= itvA.start
+	} else {
+		// If it starts at the same point, they are intersected
+		return true
 	}
 }
 
