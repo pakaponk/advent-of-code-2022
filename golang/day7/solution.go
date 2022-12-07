@@ -80,6 +80,13 @@ func getCommand(commandLine string) string {
 	return commandLine[2:4]
 }
 
+// Part 1
+const Threshold = 100000
+
+// Part 2
+const UsableSize = 70000000
+const RequiredSizeForUpdate = 30000000
+
 func main() {
 	txt := readInput("./day7/input.txt")
 
@@ -118,15 +125,15 @@ func main() {
 
 	var part1Ans int
 	for _, dir := range dirs {
-		if sizeByDir[dir] <= 100000 {
+		if sizeByDir[dir] <= Threshold {
 
 			part1Ans += sizeByDir[dir]
 		}
 	}
 
 	totalSize := sizeByDir["/"]
-	unusedSize := 70000000 - totalSize
-	diff := 30000000 - unusedSize
+	unusedSize := UsableSize - totalSize
+	diff := RequiredSizeForUpdate - unusedSize
 
 	min := totalSize
 	for _, dir := range dirs {
